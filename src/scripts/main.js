@@ -1,7 +1,7 @@
 'use strict';
 
 // write code here
-const inputElements = [...document.querySelectorAll('input')];
+const inputElements = [...document.querySelectorAll('form input')];
 
 function enhanceFormInputs(inputs) {
   const transformInputName = (input) => {
@@ -13,17 +13,16 @@ function enhanceFormInputs(inputs) {
 
   inputs.forEach((input) => {
     const label = document.createElement('label');
-    const inputName = input.name;
+    const capitalizeName = transformInputName(input);
     const inputId = input.id;
-    const placeholderName = transformInputName(input);
 
     label.setAttribute('class', 'field-label');
     label.setAttribute('for', inputId);
-    label.textContent = inputName;
+    label.textContent = capitalizeName;
 
     input.before(label);
 
-    input.setAttribute('placeholder', placeholderName);
+    input.setAttribute('placeholder', capitalizeName);
   });
 }
 
